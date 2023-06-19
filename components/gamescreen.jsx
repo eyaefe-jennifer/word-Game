@@ -14,16 +14,18 @@ export default function GameScreen() {
   const [clear, setClear] = useState(true);
   const [listOfLetters, setListOfLetters] = useState([]);
   const [listOfWords, setListOfWords] = useState([]);
-  const [seconds, setSeconds] = useState(60);
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
 
   const startTimer = () => {
     setInterval(() => {
       setSeconds((seconds) => {
-        if (seconds <= 0) {
+        if (seconds === 59) {
+          setMinutes(minutes + 1);
           clearInterval();
           return 0;
         }
-        return seconds - 1;
+        return seconds + 1;
       });
     }, 1000);
   };
@@ -72,7 +74,9 @@ export default function GameScreen() {
           </div>
           <div className={styles.center}>
             <BoxComponent
-              display={`Timer: ${seconds === 0 ? "Time up" : seconds}`}
+              display={`Timer: ${minutes < 10 ? "0" + minutes : minutes}:${
+                seconds < 10 ? "0" + seconds : seconds
+              }`}
             />
           </div>
         </div>
