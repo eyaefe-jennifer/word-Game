@@ -20,10 +20,10 @@ export default function GameScreen() {
   const startTimer = () => {
     setInterval(() => {
       setSeconds((seconds) => {
-        if (seconds === 59) {
+        if (seconds === 19) {
           setMinutes(minutes + 1);
+          setSeconds(0);
           clearInterval();
-          return 0;
         }
         return seconds + 1;
       });
