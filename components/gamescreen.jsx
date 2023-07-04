@@ -21,10 +21,13 @@ export default function GameScreen() {
     setInterval(() => {
       setSeconds((seconds) => {
         if (seconds === 19) {
-          setMinutes(minutes + 1);
+          setMinutes((minutes) => {
+            return minutes + 1;
+          });
+
           setSeconds(0);
-          clearInterval();
         }
+        clearInterval();
         return seconds + 1;
       });
     }, 1000);
